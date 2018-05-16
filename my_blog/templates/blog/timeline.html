@@ -1,0 +1,80 @@
+﻿<!--
+    
+ @Name：不落阁整站模板源码
+ @Author：Absolutely
+ @Site：http://www.lyblogs.cn
+
+ -->
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load blog_tags %}
+   {% block head %}
+    <!-- 本页样式表 -->
+    <link href="{% static 'css/timeline.css' %}" rel="stylesheet" />
+    {% endblock head %}
+ {% block main %}
+    <!-- 主体（一般只改变这里的内容） -->
+    <div class="blog-body">
+        <div class="blog-container">
+            <blockquote class="layui-elem-quote sitemap layui-breadcrumb shadow">
+                <a href="{% url 'blog:index' %}" title="网站首页">网站首页</a>
+                <a href="{% url 'blog:timeLine' %}" title="点点滴滴">点点滴滴</a>
+                <a><cite>时光轴</cite></a>
+            </blockquote>
+            <div class="blog-main">
+                <div class="child-nav shadow">
+                    <span class="child-nav-btn child-nav-btn-this">时光轴</span>
+                    <!--<span class="child-nav-btn">笔记墙</span>-->
+                </div>
+                <div class="timeline-box shadow">
+                    <div class="timeline-main">
+                        <h1><i class="fa fa-clock-o"></i>时光轴<span> —— 记录生活点点滴滴</span></h1>
+                        <div class="timeline-line"></div>
+                        <div class="timeline-year">
+                             {% get_days as days %}
+                             {% for date in days %}
+                            <h2><a class="yearToggle" href="javascript:;">{{ date.year }}年</a><i class="fa fa-caret-down fa-fw"></i></h2>
+                            <div class="timeline-month">
+                                <h3 class=" animated fadeInLeft"><a class="monthToggle" href="javascript:;">{{ date.month }}月</a><i class="fa fa-caret-down fa-fw"></i></h3>
+                                <ul>
+                                    <li class=" ">
+                                        <div class="h4  animated fadeInLeft">
+                                            <p class="date">{{ date.month }}月{{ date.day }}日 19:33</p>
+                                        </div>
+                                        <p class="dot-circle animated "><i class="fa fa-dot-circle-o"></i></p>
+                                        <div class="content animated fadeInRight">该时光轴支持手机平板PC，但并不能兼容一些老的浏览器！</div>
+                                        <div class="clear"></div>
+                                    </li>
+                                    {% empty %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                        <h1 style="padding-top:4px;padding-bottom:2px;margin-top:40px;"><i class="fa fa-hourglass-end"></i>THE END</h1>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+  {% block footer %}
+    <!-- 本页脚本 -->
+    <script type="text/javascript">
+        layui.use('jquery', function () {
+            var $ = layui.jquery;
+
+            $(function () {
+                $('.monthToggle').click(function () {
+                    $(this).parent('h3').siblings('ul').slideToggle('slow');
+                    $(this).siblings('i').toggleClass('fa-caret-down fa-caret-right');
+                });
+                $('.yearToggle').click(function () {
+                    $(this).parent('h2').siblings('.timeline-month').slideToggle('slow');
+                    $(this).siblings('i').toggleClass('fa-caret-down fa-caret-right');
+                });
+            });
+        });
+    </script>
+{% endblock footer %}
+{% endblock main %}
