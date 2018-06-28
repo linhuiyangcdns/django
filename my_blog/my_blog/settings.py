@@ -30,7 +30,8 @@ SECRET_KEY = 'sf&0l(d_^a1xnit0yjnrkdtzy@h)v(eevr$-(khtd$ud!%1%vf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', '.xiaomaolublog.xyz']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost ','.xiaomaolvblog.top','106.12.11.45' ]
+#DEBUG = True
 
 #ALLOWED_HOSTS = []
 
@@ -57,6 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.contrib.staticfiles.finders.FileSystemFinder',
+    # 'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
 ROOT_URLCONF = 'my_blog.urls'
@@ -96,6 +99,18 @@ DATABASES = {
         },
     }
 }
+
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#         'LOCATION': '127.0.0.1:11211',
+#         'TIMEOUT': 3600,
+#         'OPTIONS': {
+#             'MAX_ENTRIES': 1000
+#         }
+#     }
+# }
 
 # HAYSTACK_CONNECTIONS = {
 #     'default': {
@@ -144,7 +159,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'mystatic')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]

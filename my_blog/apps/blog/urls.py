@@ -2,6 +2,7 @@
 
 from django.conf.urls import url
 from . import views
+from .views import *
 
 app_name = 'blog'
 urlpatterns = [
@@ -15,3 +16,6 @@ urlpatterns = [
     url(r'^about/$',views.about, name='about'),
 
 ]
+handler404 = page_not_found
+handler403 = permission_denied
+handler500 = page_error
